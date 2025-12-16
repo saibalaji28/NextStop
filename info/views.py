@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+def faq(request):
+    return render(request, "info/faq.html")
+
+def about(request):
+    return render(request, "info/about.html")

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NextStop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md px-6 py-4 flex gap-6">
+        <a href="{% url 'home' %}" class="font-semibold hover:text-blue-600">Home</a>
+        <a href="{% url 'route' %}" class="hover:text-blue-600">Route</a>
+        <a href="{% url 'map' %}" class="hover:text-blue-600">Metro Map</a>
+        <a href="{% url 'faq' %}" class="hover:text-blue-600">FAQ</a>
+        <a href="{% url 'about' %}" class="hover:text-blue-600">About Us</a>
+    </nav>
+
+    <!-- Page Content -->
+    <main class="p-6">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>
