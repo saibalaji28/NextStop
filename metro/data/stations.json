@@ -1,0 +1,17 @@
+{
+    "stations": [
+      "Kashmere Gate",
+      "Chandni Chowk",
+      "New Delhi",
+      "Rajiv Chowk",
+      "Central Secretariat",
+      "INA"
+    ],
+    "connections": [
+      { "from": "Kashmere Gate", "to": "Chandni Chowk", "distance": 2 },
+      { "from": "Chandni Chowk", "to": "New Delhi", "distance": 2 },
+      { "from": "New Delhi", "to": "Rajiv Chowk", "distance": 1 },
+      { "from": "Rajiv Chowk", "to": "Central Secretariat", "distance": 2 },
+      { "from": "Central Secretariat", "to": "INA", "distance": 3 }
+    ]
+  }
