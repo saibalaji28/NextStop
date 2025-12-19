@@ -25,4 +25,11 @@
         Find Route
     </button>
 </form>
+{% if result %}
+    <div class="mt-6 p-4 bg-white shadow rounded">
+        <h2 class="font-bold mb-2">Selected Stations</h2>
+        <p><strong>From:</strong> {{ result.source }}</p>
+        <p><strong>To:</strong> {{ result.destination }}</p>
+    </div>
+{% endif %}
 {% endblock %}
