@@ -32,4 +32,19 @@
         <p><strong>To:</strong> {{ result.destination }}</p>
     </div>
 {% endif %}
+{% if result.path %}
+<div class="mt-6 p-4 bg-white shadow rounded">
+    <h2 class="font-bold mb-2">Shortest Route</h2>
+
+    <p class="mb-2">
+        <strong>Stations:</strong>
+        {{ result.path|join:" → " }}
+    </p>
+
+    <p>
+        <strong>Total Distance:</strong>
+        {{ result.distance }} minutes
+    </p>
+</div>
+{% endif %}
 {% endblock %}
