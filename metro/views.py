@@ -3,6 +3,7 @@ from metro.models import Station
 from metro.utils.graph import build_graph
 from metro.utils.dijkstra import shortest_path
 
+
 def route_view(request):
     stations = Station.objects.all().order_by("name")
     result = None
@@ -25,3 +26,7 @@ def route_view(request):
         "stations": stations,
         "result": result
     })
+
+
+def map_view(request):
+    return render(request, "metro/map.html")
