@@ -1,6 +1,100 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="text-xl font-bold">About Us</h1>
-<p class="mt-2">NextStop helps users navigate metro routes easily.</p>
+
+<!-- Floating Blur Effects -->
+<div class="absolute top-32 left-20 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
+<div class="absolute top-80 right-24 w-40 h-40 bg-accent/20 rounded-full blur-3xl"></div>
+<div class="absolute bottom-40 left-1/3 w-28 h-28 bg-primary/20 rounded-full blur-3xl"></div>
+
+<!-- About Section -->
+<section class="max-w-5xl mx-auto px-6 mt-20 relative z-10">
+  <div class="text-center mb-14">
+    <h2 class="text-4xl font-bold text-gray-900 mb-4">
+      About Our Project
+    </h2>
+    <p class="text-gray-600 max-w-3xl mx-auto">
+      NextStop is a collaborative smart metro routing project designed to
+      simplify urban travel with clarity, speed, and accessibility.
+    </p>
+  </div>
+
+  <!-- Team Section -->
+  <h3 class="text-2xl font-semibold text-center mb-10 text-gray-900">
+    Project Team
+  </h3>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+    <!-- Member Card -->
+    <div class="team-card">
+      <h4 class="team-name">Sai Balaji</h4>
+      <p class="team-email">sbsaibalaji2830@gmail.com</p>
+      <p class="team-role">BCA (Regular)</p>
+    </div>
+
+    <div class="team-card">
+      <h4 class="team-name">Tharun P S</h4>
+      <p class="team-email">pstharunn@gmail.com</p>
+      <p class="team-role">BCA (Regular)</p>
+    </div>
+
+    <div class="team-card">
+      <h4 class="team-name">Soumya Apurva</h4>
+      <p class="team-email">soumyaap736@gmail.com</p>
+      <p class="team-role">BCA (Regular)</p>
+    </div>
+
+    <div class="team-card">
+      <h4 class="team-name">Tannu Priya</h4>
+      <p class="team-email">tannupriya1024@gmail.com</p>
+      <p class="team-role">BCA (Regular)</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Page-specific Styles -->
+<style>
+  .team-card {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(14px);
+    border-radius: 1.25rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+  }
+
+  .team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 0 1px rgba(79,110,247,0.25),
+                0 0 50px rgba(79,110,247,0.3);
+  }
+
+  .team-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    transition: color 0.3s ease;
+  }
+
+  .team-card:hover .team-name {
+    color: #9dafff;
+  }
+
+  .team-email {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+  }
+
+  .team-role {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #ba9efc;
+  }
+</style>
+
 {% endblock %}
