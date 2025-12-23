@@ -27,7 +27,7 @@ def dijkstra(graph, start, end):
 
                 # interchange penalty
                 if last_line and last_line != edge["line"]:
-                    extra_time += 5  # interchange penalty
+                    extra_time += 6  # interchange penalty
 
                 heapq.heappush(
                     pq,

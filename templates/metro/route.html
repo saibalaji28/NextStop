@@ -48,19 +48,33 @@
 </div>
 {% endif %}
 
-<!-- ROUTE RESULT -->
+<!-- ROUTE DETAILS -->
 {% if result.path %}
-<div class="mt-6 p-4 bg-white shadow rounded">
+<div class="mt-6 p-6 bg-white shadow rounded space-y-2">
     <h2 class="font-bold mb-2">Route Details</h2>
 
-    <p class="mb-2">
-        <strong>Stations:</strong><br>
+    <p>
+        <strong>Stations Path:</strong><br>
         {{ result.path|join:" → " }}
     </p>
 
-    <p class="mt-2">
+    <p>
+        <strong>Total Stations:</strong>
+        {{ result.stations_count }}
+    </p>
+
+    <p>
+        <strong>Interchanges:</strong>
+        {{ result.interchanges }}
+    </p>
+
+    <p>
         <strong>Estimated Time:</strong>
         {{ result.time }} minutes
+    </p>
+
+    <p class="text-lg font-semibold text-green-700">
+        Fare: ₹{{ result.fare }}
     </p>
 </div>
 {% endif %}
