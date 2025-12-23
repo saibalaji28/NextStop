@@ -1,23 +1,43 @@
 import heapq
 
-def shortest_path(graph, start, end):
-    queue = [(0, start, [])]
+def dijkstra(graph, start, end):
+    pq = [(0, start, [], None, 0)]  
     visited = set()
 
-    while queue:
-        cost, node, path = heapq.heappop(queue)
+    while pq:
+        distance, station, path, last_line, time = heapq.heappop(pq)
 
-        if node in visited:
+        if station in visited:
             continue
 
-        path = path + [node]
-        visited.add(node)
+        visited.add(station)
+        path = path + [(station, last_line)]
 
-        if node == end:
-            return path, cost
+        if station == end:
+            return {
+                "path": path,
+                "distance": distance,
+                "time": time
+            }
 
-        for neighbor, weight in graph[node].items():
-            if neighbor not in visited:
-                heapq.heappush(queue, (cost + weight, neighbor, path))
+        for edge in graph.get(station, []):
+            if edge["to"] not in visited:
+                extra_time = edge["time"]
+                extra_distance = edge["distance"]
 
-    return None, float("inf")
+                # interchange penalty
+                if last_line and last_line != edge["line"]:
+                    extra_time += 5  # interchange penalty
+
+                heapq.heappush(
+                    pq,
+                    (
+                        distance + extra_distance,
+                        edge["to"],
+                        path,
+                        edge["line"],
+                        time + extra_time
+                    )
+                )
+
+    return None

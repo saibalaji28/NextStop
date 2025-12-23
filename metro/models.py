@@ -21,11 +21,10 @@ class Connection(models.Model):
     to_station = models.ForeignKey(
         Station, related_name="to_connections", on_delete=models.CASCADE
     )
-    line = models.ForeignKey(
-        Line, on_delete=models.CASCADE,
-        null=True, blank=True   # temporary during setup
-    )
-    distance = models.IntegerField(default=1)
+    line = models.ForeignKey(Line, on_delete=models.CASCADE)
+
+    distance = models.IntegerField(default=1)  # for algorithm
+    time = models.IntegerField(default=2)      # minutes between stations
 
     def __str__(self):
         return f"{self.from_station} → {self.to_station} ({self.line})"

@@ -1,14 +1,26 @@
-from metro.models import Station, Connection
+from collections import defaultdict
+from metro.models import Connection
 
 def build_graph():
-    graph = {}
+    graph = defaultdict(list)
 
-    # Initialize nodes
-    for station in Station.objects.all():
-        graph[station.name] = {}
+    connections = Connection.objects.select_related(
+        "from_station", "to_station", "line"
+    )
 
-    # Add edges
-    for conn in Connection.objects.all():
-        graph[conn.from_station.name][conn.to_station.name] = conn.distance
+    for conn in connections:
+        graph[conn.from_station.name].append({
+            "to": conn.to_station.name,
+            "distance": conn.distance,
+            "time": conn.time,
+            "line": conn.line.name
+        })
+
+        graph[conn.to_station.name].append({
+            "to": conn.from_station.name,
+            "distance": conn.distance,
+            "time": conn.time,
+            "line": conn.line.name
+        })
 
     return graph
