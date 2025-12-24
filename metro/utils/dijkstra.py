@@ -1,43 +1,50 @@
 import heapq
 
+INTERCHANGE_PENALTY = 6  # minutes
+
 def dijkstra(graph, start, end):
-    pq = [(0, start, [], None, 0)]  
-    visited = set()
+    # (distance, station, path, last_line, time)
+    pq = [(0, start, [], None, 0)]
+    visited = {}
 
     while pq:
         distance, station, path, last_line, time = heapq.heappop(pq)
 
-        if station in visited:
+        if station in visited and visited[station] <= time:
             continue
+        visited[station] = time
 
-        visited.add(station)
         path = path + [(station, last_line)]
 
         if station == end:
+            interchanges = sum(
+                1 for i in range(1, len(path))
+                if path[i][1] != path[i-1][1] and path[i][1] is not None
+            )
+
             return {
                 "path": path,
                 "distance": distance,
-                "time": time
+                "time": time,
+                "interchanges": interchanges
             }
 
         for edge in graph.get(station, []):
-            if edge["to"] not in visited:
-                extra_time = edge["time"]
-                extra_distance = edge["distance"]
+            extra_time = edge["time"]
+            extra_distance = edge["distance"]
 
-                # interchange penalty
-                if last_line and last_line != edge["line"]:
-                    extra_time += 6  # interchange penalty
+            if last_line and last_line != edge["line"]:
+                extra_time += INTERCHANGE_PENALTY
 
-                heapq.heappush(
-                    pq,
-                    (
-                        distance + extra_distance,
-                        edge["to"],
-                        path,
-                        edge["line"],
-                        time + extra_time
-                    )
+            heapq.heappush(
+                pq,
+                (
+                    distance + extra_distance,
+                    edge["to"],
+                    path,
+                    edge["line"],
+                    time + extra_time
                 )
+            )
 
     return None

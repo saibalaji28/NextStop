@@ -12,14 +12,14 @@ def build_graph():
         graph[conn.from_station.name].append({
             "to": conn.to_station.name,
             "distance": conn.distance,
-            "time": conn.time,
+            "time": conn.travel_time,
             "line": conn.line.name
         })
 
         graph[conn.to_station.name].append({
             "to": conn.from_station.name,
             "distance": conn.distance,
-            "time": conn.time,
+            "time": conn.travel_time,
             "line": conn.line.name
         })
 
