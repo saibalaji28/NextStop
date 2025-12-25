@@ -78,5 +78,15 @@
     </p>
 </div>
 {% endif %}
+{% if result.instructions %}
+<div class="mt-6 p-4 bg-white shadow rounded">
+    <h2 class="font-bold mb-3">Journey Instructions</h2>
+    <ol class="list-decimal ml-6 space-y-1">
+        {% for step in result.instructions %}
+            <li>{{ step }}</li>
+        {% endfor %}
+    </ol>
+</div>
+{% endif %}
 
 {% endblock %}
