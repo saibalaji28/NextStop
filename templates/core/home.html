@@ -1,7 +1,74 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="text-2xl font-bold">Welcome to NextStop</h1>
-<p class="mt-2">Your metro navigation companion.</p>
+
+<!-- 🌈 BACKGROUND -->
+<div class="fixed -inset-[2px] -z-10 overflow-hidden pointer-events-none
+            bg-gradient-to-br
+            from-slate-50
+            via-indigo-50
+            to-purple-50
+            bg-[length:220%_220%]">
+
+  <div class="absolute -top-[25%] -left-[25%]
+              w-[700px] h-[700px]
+              bg-indigo-400/20
+              rounded-full blur-3xl"></div>
+
+  <div class="absolute -bottom-[25%] -right-[25%]
+              w-[700px] h-[700px]
+              bg-purple-400/20
+              rounded-full blur-3xl"></div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="relative min-h-screen pt-40 pb-40">
+
+  <!-- HERO SECTION -->
+  <section class="relative overflow-hidden">
+
+    <!-- 🔵 Animated Line -->
+    <div class="absolute top-1/2 left-0 w-full h-[3px]
+                bg-[linear-gradient(90deg,transparent,rgba(99,102,241,0.6),transparent)]
+                bg-[length:200%_100%] animate-flow">
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6 py-32 grid lg:grid-cols-2 gap-24 items-center">
+
+      <!-- LEFT -->
+      <div>
+        <span class="inline-block mb-6 px-4 py-1 text-xs font-medium rounded-full
+                     bg-indigo-100 text-indigo-600">
+          Smart Metro Navigation
+        </span>
+
+        <h1 class="text-6xl font-semibold leading-tight mb-8">
+          Your city.<br>
+          <span class="bg-gradient-to-r from-blue-500 to-purple-500
+                       bg-clip-text text-transparent">
+            One smooth route.
+          </span>
+        </h1>
+
+        <p class="text-lg text-slate-500 max-w-xl mb-10">
+          Built for daily commuters.  
+          Fewer interchanges. Predictable journeys.  
+          Designed with real metro logic.
+        </p>
+
+        <!-- ✅ ROUTE BUTTON -->
+        <a href="{% url 'route' %}"
+           class="inline-block px-10 py-4 rounded-full
+                  bg-gradient-to-r from-blue-500 to-indigo-500
+                  text-white font-medium shadow-xl
+                  hover:scale-[1.03] transition">
+          Start Routing →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
 
 {% endblock %}
