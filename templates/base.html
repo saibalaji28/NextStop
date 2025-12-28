@@ -1,26 +1,104 @@
+{% load static %}
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>NextStop</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <title>NextStop</title>
+
+  <!-- ✅ Tailwind CDN (VERY IMPORTANT) -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
 
-    <!-- Navbar -->
-    <nav class="bg-white shadow-md px-6 py-4 flex gap-6">
-        <a href="{% url 'home' %}" class="font-semibold hover:text-blue-600">Home</a>
-        <a href="{% url 'route' %}" class="hover:text-blue-600">Route</a>
-        <a href="{% url 'map' %}" class="hover:text-blue-600">Metro Map</a>
-        <a href="{% url 'faq' %}" class="hover:text-blue-600">FAQ</a>
-        <a href="{% url 'about' %}" class="hover:text-blue-600">About Us</a>
-    </nav>
+<body class="min-h-screen bg-slate-50 text-slate-900">
 
-    <!-- Page Content -->
-    <main class="p-6">
-        {% block content %}
-        {% endblock %}
-    </main>
+  <!-- ================= NAVBAR ================= -->
+  <!-- NAVBAR (FIXED + BLUR) -->
+  <header class="fixed top-4 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-between
+              rounded-2xl px-6 py-4
+              bg-white/70 backdrop-blur-xl
+              border border-white/40
+              shadow-[0_20px_40px_rgba(30,27,75,0.25)]
+              transition-all duration-300
+              hover:-translate-y-1
+              hover:shadow-[0_30px_60px_rgba(88,28,135,0.28)]">
+
+        <!-- TEXT LOGO -->
+        <!-- LOGO -->
+<div class="flex items-center gap-3">
+    <img
+      src="{% static 'images/metro-logo.png' %}"
+      alt="NextStop Logo"
+      class="w-10 h-10 object-contain"
+    >
+    <span class="text-lg font-semibold tracking-tight text-slate-900">
+      NextStop
+    </span>
+  </div>
+
+        <!-- NAV LINKS -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+
+          <a href="{% url 'home' %}"
+             class="relative hover:text-black transition
+                    after:absolute after:-bottom-1 after:left-0
+                    after:h-[2px] after:w-0
+                    after:bg-gradient-to-r after:from-indigo-500 after:to-purple-500
+                    after:transition-all hover:after:w-full">
+            Home
+          </a>
+
+          <a href="{% url 'route' %}"
+             class="relative hover:text-black transition
+                    after:absolute after:-bottom-1 after:left-0
+                    after:h-[2px] after:w-0
+                    after:bg-gradient-to-r after:from-indigo-500 after:to-purple-500
+                    after:transition-all hover:after:w-full">
+            Routes
+          </a>
+
+          <a href="{% url 'map' %}"
+             class="relative hover:text-black transition
+                    after:absolute after:-bottom-1 after:left-0
+                    after:h-[2px] after:w-0
+                    after:bg-gradient-to-r after:from-indigo-500 after:to-purple-500
+                    after:transition-all hover:after:w-full">
+            Map
+          </a>
+
+          <a href="{% url 'faq' %}"
+             class="relative hover:text-black transition
+                    after:absolute after:-bottom-1 after:left-0
+                    after:h-[2px] after:w-0
+                    after:bg-gradient-to-r after:from-indigo-500 after:to-purple-500
+                    after:transition-all hover:after:w-full">
+            FAQ
+          </a>
+
+          <a href="{% url 'about' %}"
+             class="relative hover:text-black transition
+                    after:absolute after:-bottom-1 after:left-0
+                    after:h-[2px] after:w-0
+                    after:bg-gradient-to-r after:from-indigo-500 after:to-purple-500
+                    after:transition-all hover:after:w-full">
+            About
+          </a>
+
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- ================= END NAVBAR ================= -->
+
+
+  <!-- ================= PAGE CONTENT ================= -->
+  <!-- Padding-top is IMPORTANT because navbar is fixed -->
+  <main class="pt-40 px-6">
+    {% block content %}{% endblock %}
+  </main>
+  <!-- ================= END CONTENT ================= -->
 
 </body>
 </html>
