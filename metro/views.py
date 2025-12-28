@@ -72,4 +72,17 @@ def route_view(request):
 
 
 def map_view(request):
-    return render(request, "metro/map.html")
+
+    from django.shortcuts import render
+
+def map_view(request):
+    # route path can be passed as query param later
+    route_path = request.GET.getlist("route")
+
+    return render(
+        request,
+        "metro/map.html",
+        {
+            "route_path": route_path
+        }
+    )

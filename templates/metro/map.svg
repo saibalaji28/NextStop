@@ -1,0 +1,21 @@
+<svg width="800" height="300" viewBox="0 0 800 300"
+     xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Yellow Line -->
+  <line x1="100" y1="150" x2="700" y2="150"
+        stroke="#FACC15" stroke-width="6"/>
+
+  <!-- Stations -->
+  <circle cx="150" cy="150" r="6" fill="white" stroke="black"/>
+  <text x="120" y="175" font-size="12">Chandni Chowk</text>
+
+  <circle cx="300" cy="150" r="6" fill="white" stroke="black"/>
+  <text x="270" y="175" font-size="12">New Delhi</text>
+
+  <circle cx="450" cy="150" r="6" fill="white" stroke="black"/>
+  <text x="420" y="175" font-size="12">Rajiv Chowk</text>
+
+  <circle cx="600" cy="150" r="6" fill="white" stroke="black"/>
+  <text x="560" y="175" font-size="12">Central Secretariat</text>
+
+</svg>
