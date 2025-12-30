@@ -4,10 +4,34 @@
 <h1 class="text-xl font-bold mb-4">Delhi Metro Map</h1>
 
 <div class="bg-white p-4 rounded shadow overflow-auto">
+
     {% include "metro/map.svg" %}
+
+    {% if route_path %}
+        <div class="mt-6">
+            <h2 class="font-semibold mb-2">Highlighted Route</h2>
+
+            <ul class="text-sm space-y-1">
+                {% for station in route_path %}
+                    <li
+                      class="{% if station in interchange_stations %}
+                              text-orange-600 font-semibold
+                            {% else %}
+                              text-gray-700
+                            {% endif %}">
+                        ● {{ station }}
+                        {% if station in interchange_stations %}
+                            (Interchange)
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
 </div>
 
 <p class="mt-4 text-sm text-gray-600">
-    This is a schematic metro map for navigation reference.
+    Interchange stations are highlighted for easier navigation.
 </p>
 {% endblock %}
