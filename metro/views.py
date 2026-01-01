@@ -3,7 +3,7 @@ from .models import Station
 from .utils.graph import build_graph
 from .utils.dijkstra import dijkstra
 from .utils.fare import calculate_fare
-from .utils.instructions import build_instructions  # ✅ Phase 7
+from .utils.instructions import build_instructions
 
 
 def route_view(request):
@@ -14,7 +14,7 @@ def route_view(request):
         source = request.POST.get("source")
         destination = request.POST.get("destination")
 
-        # ❌ Edge case: same source & destination
+        # ❌ Same station edge case
         if source == destination:
             result = {
                 "error": "Source and destination cannot be the same."
@@ -26,63 +26,54 @@ def route_view(request):
             if route:
                 path_with_lines = route["path"]
 
-                # 🔁 Count interchanges
+                # 🔁 Interchanges + stations
                 interchanges = 0
+                interchange_stations = []
                 last_line = None
-                for _, line in path_with_lines:
+
+                for station, line in path_with_lines:
                     if last_line and line != last_line:
                         interchanges += 1
+                        interchange_stations.append(station)
                     last_line = line
 
-                # 🧮 Stations count
                 stations_count = len(path_with_lines)
-
-                # 💰 Fare calculation
                 fare = calculate_fare(stations_count)
-
-                # 🧭 Phase 7: Build user-friendly instructions
                 instructions = build_instructions(path_with_lines)
 
-                # ✅ Final result object
                 result = {
                     "source": source,
                     "destination": destination,
                     "path": [s for s, _ in path_with_lines],
+                    "path_with_lines": path_with_lines,  # ⭐ IMPORTANT
                     "time": route["time"],
                     "distance": route["distance"],
                     "stations_count": stations_count,
                     "interchanges": interchanges,
+                    "interchange_stations": interchange_stations,  # ⭐ NEW
                     "fare": fare,
-                    "instructions": instructions,  # ⭐ NEW
+                    "instructions": instructions,
                 }
-
             else:
                 result = {
                     "error": "No route found between selected stations."
                 }
 
-    return render(
-        request,
-        "metro/route.html",
-        {
-            "stations": stations,
-            "result": result
-        }
-    )
+    return render(request, "metro/route.html", {
+        "stations": stations,
+        "result": result
+    })
 
 
 def map_view(request):
+    """
+    Phase 8 Stage 3:
+    Receives route data and highlights it on map
+    """
+    route_path = request.GET.getlist("path")
+    interchange_stations = request.GET.getlist("interchanges")
 
-    from django.shortcuts import render
-
-def map_view(request):
-    # route path can be passed as query param later
-    route_path = request.GET.getlist("route")
-
-    return render(
-        request,
-        "metro/map.html",
-        {
-            "route_path": route_path
-        }
-    )
+    return render(request, "metro/map.html", {
+        "route_path": route_path,
+        "interchange_stations": interchange_stations
+    })
