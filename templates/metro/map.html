@@ -1,37 +1,45 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="text-xl font-bold mb-4">Delhi Metro Map</h1>
 
-<div class="bg-white p-4 rounded shadow overflow-auto">
+<h1 class="text-2xl font-bold mb-6">Delhi Metro Map</h1>
 
+<div class="bg-white rounded-xl shadow p-6 overflow-auto">
+
+  <!-- MAP -->
+  <div class="flex justify-center mb-6">
     {% include "metro/map.svg" %}
+  </div>
 
-    {% if route_path %}
-        <div class="mt-6">
-            <h2 class="font-semibold mb-2">Highlighted Route</h2>
+  <!-- LEGEND -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
 
-            <ul class="text-sm space-y-1">
-                {% for station in route_path %}
-                    <li
-                      class="{% if station in interchange_stations %}
-                              text-orange-600 font-semibold
-                            {% else %}
-                              text-gray-700
-                            {% endif %}">
-                        ● {{ station }}
-                        {% if station in interchange_stations %}
-                            (Interchange)
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
+    <div class="flex items-center gap-2">
+      <span class="w-4 h-1 bg-yellow-400 rounded"></span>
+      <span>Metro Line</span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <span class="w-4 h-1 bg-orange-500 rounded"></span>
+      <span>Your Route</span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-white border"></span>
+      <span>Station</span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <span class="w-4 h-4 rounded-full bg-orange-500"></span>
+      <span>Interchange</span>
+    </div>
+
+  </div>
 
 </div>
 
 <p class="mt-4 text-sm text-gray-600">
-    Interchange stations are highlighted for easier navigation.
+  Interchange stations are highlighted for easier navigation.
 </p>
+
 {% endblock %}
