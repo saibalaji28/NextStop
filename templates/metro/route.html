@@ -89,11 +89,12 @@
 </div>
 {% endif %}
 {% if result.path %}
-<a
-  href="{% url 'map' %}?{% for s in result.path %}route={{ s }}&{% endfor %}"
-  class="inline-block mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
->
-  View Route on Map
+<a href="{% url 'map' %}?{% for s in result.path %}
+path={{ s }}&{% endfor %}
+{% for i in result.interchange_stations %}
+interchanges={{ i }}&{% endfor %}"
+class="inline-block mt-6 px-6 py-3 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">
+View Route on Map
 </a>
 {% endif %}
 {% endblock %}
