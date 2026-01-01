@@ -5,7 +5,9 @@
 <h1 class="text-2xl font-bold mb-6">Delhi Metro Map</h1>
 
 <div class="bg-white p-4 rounded shadow overflow-auto">
-
+    <script>
+        const activeStations = {{ route_path|safe }};
+      </script>
     {% include "metro/map.svg" %}
 
     {% if route_path %}

@@ -25,6 +25,14 @@
       fill: white;
       stroke: #111827;
       stroke-width: 2;
+      cursor: pointer;
+      transition: transform 0.2s ease, fill 0.2s ease;
+      transform-origin: center;
+    }
+
+    .station:hover {
+      transform: scale(1.4);
+      fill: #60a5fa;
     }
 
     .interchange {
@@ -43,36 +51,60 @@
   <line x1="100" y1="100" x2="700" y2="100"
         class="line-inactive" />
 
-  <!-- ================== ACTIVE ROUTE (SEGMENTS) ================== -->
+  <!-- ================== ACTIVE ROUTE ================== -->
 
-  <!-- Chandni Chowk → New Delhi -->
   <line x1="100" y1="100" x2="300" y2="100"
         class="line-yellow line-active" />
 
-  <!-- New Delhi → Rajiv Chowk -->
   <line x1="300" y1="100" x2="500" y2="100"
         class="line-yellow line-active" />
 
-  <!-- Rajiv Chowk → Central Secretariat -->
   <line x1="500" y1="100" x2="700" y2="100"
         class="line-yellow line-active" />
 
   <!-- ================== STATIONS ================== -->
 
   <!-- Chandni Chowk -->
-  <circle cx="100" cy="100" r="8" class="station" />
+  <circle cx="100" cy="100" r="8"
+          class="station"
+          data-name="Chandni Chowk" />
   <text x="100" y="125" text-anchor="middle">Chandni Chowk</text>
 
   <!-- New Delhi -->
-  <circle cx="300" cy="100" r="8" class="station" />
+  <circle cx="300" cy="100" r="8"
+          class="station"
+          data-name="New Delhi" />
   <text x="300" y="125" text-anchor="middle">New Delhi</text>
 
   <!-- Rajiv Chowk (Interchange) -->
-  <circle cx="500" cy="100" r="12" class="interchange" />
+  <circle cx="500" cy="100" r="12"
+          class="station interchange"
+          data-name="Rajiv Chowk" />
   <text x="500" y="125" text-anchor="middle">Rajiv Chowk</text>
 
   <!-- Central Secretariat (Interchange) -->
-  <circle cx="700" cy="100" r="12" class="interchange" />
+  <circle cx="700" cy="100" r="12"
+          class="station interchange"
+          data-name="Central Secretariat" />
   <text x="700" y="125" text-anchor="middle">Central Secretariat</text>
+
+  <!-- ================== INTERACTION SCRIPT ================== -->
+  <script><![CDATA[
+    const stations = document.querySelectorAll('.station');
+
+    stations.forEach(station => {
+      const name = station.getAttribute('data-name');
+
+      // Highlight active route (from Django)
+      if (typeof activeStations !== "undefined" && activeStations.includes(name)) {
+        station.setAttribute("fill", "#f97316");
+        station.setAttribute("r", "12");
+      }
+
+      station.addEventListener('click', () => {
+        alert("Station: " + name);
+      });
+    });
+  ]]></script>
 
 </svg>
